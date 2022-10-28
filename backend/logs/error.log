@@ -1,0 +1,30 @@
+[2022-09-17T21:30:04.478Z] error: User validation failed: avatar: Path `avatar` is required.
+[2022-09-20T14:50:08.390Z] error: error Unexpected token U in JSON at position 0
+[2022-09-20T14:51:21.977Z] error: error Unexpected token U in JSON at position 0
+[2022-09-20T14:52:15.914Z] error: error Unexpected token U in JSON at position 0
+[2022-09-20T14:52:32.073Z] error: error Unexpected token U in JSON at position 0
+[2022-09-20T14:53:11.241Z] error: error Unexpected token U in JSON at position 0
+[2022-09-20T14:54:24.562Z] error: error Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle
+[2022-09-20T14:55:06.752Z] error: error Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle
+[2022-09-20T14:56:03.497Z] error: error Unexpected token U in JSON at position 0
+[2022-09-20T14:56:33.483Z] error: error Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle
+[2022-09-20T15:11:30.064Z] error: Cannot read properties of undefined (reading 'render')
+[2022-09-21T05:47:32.742Z] error: Cannot create property '_locals' on string 'dashboard'
+[2022-09-21T17:00:18.954Z] error: Cannot read properties of undefined (reading 'send')
+[2022-10-11T00:42:39.218Z] error: res.status is not a function
+[2022-10-11T19:21:08.154Z] error: res.status is not a function
+[2022-10-11T19:22:36.778Z] error: res.status is not a function
+[2022-10-11T19:23:52.061Z] error: res.status is not a function
+[2022-10-15T03:13:15.067Z] error: Invalid status code: { message: 'Login successful', login: true }
