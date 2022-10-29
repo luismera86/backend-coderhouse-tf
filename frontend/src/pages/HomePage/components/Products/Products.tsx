@@ -1,5 +1,5 @@
 import { Button, Card, CardActionArea, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material'
-import { addToCart, getProducts, useAppDispatch, useAppSelector } from '@/redux'
+import { getProducts, useAppDispatch, useAppSelector } from '@/redux'
 
 import { Product } from '@/models'
 import { useEffect } from 'react'
@@ -13,7 +13,6 @@ const Products = () => {
   const onHandleAddToCart = (id: number) => {
     const product = products.find((product: Product) => product._id === id)
     if (product) {
-      dispatch(addToCart(product))
     }
   }
   return (

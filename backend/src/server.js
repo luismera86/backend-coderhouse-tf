@@ -6,23 +6,17 @@ import connectDB from './config/mongoDb.js'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import express from 'express'
-import { graphqlHTTP } from 'express-graphql'
 import hbs from 'hbs'
 import logger from './utils/logger.js'
 import os from 'os'
 import passport from 'passport'
 import routes from './routes/index.js'
-import schema from './graphql/schema.js'
 import session from 'express-session'
 
 const { PORT, SECRET_KEY } = config
 const app = express()
 
 connectDB()
-app.use('/graphql', graphqlHTTP({
-  schema,
-  graphiql: true,
-}))
 app.use(cors())
 app.use(cookieParser())
 app.use(

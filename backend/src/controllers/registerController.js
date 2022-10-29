@@ -4,7 +4,7 @@ import logger from '../utils/logger.js'
 
 export const userRegister = async (req = request, res = response) => {
   try {
-    res.status(200).redirect('/home')
+    res.status(201).redirect('/')
   } catch (error) {
     logger.log('error', error)
     res.status(500).json({ message: 'Error adding user' })
