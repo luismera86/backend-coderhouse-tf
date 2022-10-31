@@ -15,7 +15,7 @@ export const getProducts = async (req = request, res = response) => {
 
 export const getProductById = async (req = request, res = response) => {
   try {
-    const { id } = req.body
+    const { id } = req.params
     const product = await Product.findById({ _id: id })
     res.status(200).json({ product })
   } catch (error) {
@@ -26,12 +26,14 @@ export const getProductById = async (req = request, res = response) => {
 
 export const createProduct = async (req = request, res = response) => {
   try {
-    const { name, price, description, thumbnail } = req.body
+    const { name, price, description, thumbnail, category, quantity } = req.body
     const product = new Product({
       name,
       price,
       description,
       thumbnail,
+      category,
+      quantity,
     })
     await product.save()
     res.status(200).json({ product })
@@ -45,11 +47,7 @@ export const updateProduct = async (req = request, res = response) => {
   try {
     const { id } = req.body
     const { name, price, description, thumbnail } = req.body
-    const product = await Product.findByIdAndUpdate(
-      { _id: id },
-      { name, price, description, thumbnail },
-      { new: true }
-    )
+    const product = await Product.findByIdAndUpdate({ _id: id }, { name, price, description, thumbnail })
     res.status(200).json({ product })
   } catch (error) {
     logger.info('error', error)

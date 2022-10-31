@@ -1,7 +1,6 @@
 import { Box, Button, Container, Grid, Paper, Stack, TextField, Typography } from '@mui/material'
-import { loginUserFromDb, setUser, useAppDispatch } from '@/redux'
+import { loginUserFromDb, useAppDispatch } from '@/redux'
 
-import { db } from '@/api/db'
 import { useForm } from '@/hooks'
 import { useNavigate } from 'react-router-dom'
 
@@ -52,7 +51,7 @@ const LoginPage = () => {
                   Ingresar
                 </Button>
 
-                <Button variant='contained' onClick={() => {}}>
+                <Button variant='contained' onClick={() => navigate('/register')}>
                   Registrarse
                 </Button>
               </Stack>

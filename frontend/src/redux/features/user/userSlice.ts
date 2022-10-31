@@ -7,7 +7,6 @@ import { db } from '@/api/db'
 // TODO: Agregar el tipo de usuario
 // TODO: Agregar el thunk para registrar un usuario nuevo en la base de datos
 
-
 const initialState: User = {
   firstName: '',
   lastName: '',
@@ -34,14 +33,28 @@ export const { setUser } = userSlice.actions
 
 export default userSlice.reducer
 
-// Loguea un usuario 
+// Loguea un usuario
 export const loginUserFromDb = (username: string, password: string) => async (dispatch: AppDispatch) => {
   try {
     const response = await db.post('/login', { username, password })
     const data = response.data
-      dispatch(setUser(data.user))
-      
+    dispatch(setUser(data.user))
   } catch (error) {
     console.log(error)
+  }
+}
+
+// Registrar usuario en la base de datos
+
+export const registerUserDb = (user: User) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const response = await db.post('/register', user)
+      const data = response.data
+      console.log(data)
+      dispatch(setUser(data))
+    } catch (error) {
+      console.log(error)
+    }
   }
 }

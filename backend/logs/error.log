@@ -28,3 +28,35 @@
 [2022-10-11T19:22:36.778Z] error: res.status is not a function
 [2022-10-11T19:23:52.061Z] error: res.status is not a function
 [2022-10-15T03:13:15.067Z] error: Invalid status code: { message: 'Login successful', login: true }
+[2022-10-31T00:42:26.932Z] error: res.status is not a function
+[2022-10-31T00:46:38.852Z] error: res.status is not a function
+[2022-10-31T02:16:02.386Z] error: res.status is not a function
+[2022-10-31T02:19:39.216Z] error: res.status is not a function
+[2022-10-31T02:28:51.614Z] error: res.status is not a function
+[2022-10-31T02:44:50.284Z] error: data and salt arguments required
+[2022-10-31T02:45:18.172Z] error: data and salt arguments required
+[2022-10-31T02:45:39.105Z] error: data and salt arguments required
+[2022-10-31T02:45:54.529Z] error: data and salt arguments required
+[2022-10-31T02:46:16.684Z] error: rounds must be a number
+[2022-10-31T02:46:28.635Z] error: data and salt arguments required
+[2022-10-31T02:46:58.247Z] error: data and salt arguments required
+[2022-10-31T02:48:18.677Z] error: data and salt arguments required
+[2022-10-31T02:48:44.164Z] error: data and salt arguments required
+[2022-10-31T02:50:15.933Z] error: data and salt arguments required
+[2022-10-31T02:52:56.765Z] error: data and salt arguments required
+[2022-10-31T02:53:17.037Z] error: data and salt arguments required
+[2022-10-31T02:53:35.779Z] error: User validation failed: age: Path `age` is required., firstName: Path `firstName` is required., lastName: Path `lastName` is required., email: Path `email` is required., phone: Path `phone` is required., address: Path `address` is required., avatar: Path `avatar` is required., password: Path `password` is required.
+[2022-10-31T02:54:07.546Z] error: User validation failed: age: Path `age` is required.
+[2022-10-31T02:55:02.958Z] error: User validation failed: age: Path `age` is required.
+[2022-10-31T02:58:37.122Z] error: User validation failed: password: Path `password` is required.
+[2022-10-31T03:00:58.419Z] error: data and salt arguments required
+[2022-10-31T03:01:57.361Z] error: data and salt arguments required
+[2022-10-31T03:03:28.220Z] error: data and salt arguments required
+[2022-10-31T03:04:07.920Z] error: data and salt arguments required
+[2022-10-31T03:07:01.476Z] error: data and salt arguments required
+[2022-10-31T03:08:20.226Z] error: data and salt arguments required
+[2022-10-31T03:35:35.174Z] error: Cannot destructure property 'firstName' of 'req.body.user' as it is undefined.
+[2022-10-31T03:36:21.589Z] error: User validation failed: email: Por favor ingrese un email válido
+[2022-10-31T03:40:08.210Z] error: User validation failed: firstName: Path `firstName` is required.
+[2022-10-31T03:40:36.697Z] error: User validation failed: firstName: Path `firstName` is required.
+[2022-10-31T03:41:49.326Z] error: User validation failed: email: Por favor ingrese un email válido

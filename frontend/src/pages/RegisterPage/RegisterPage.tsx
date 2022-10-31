@@ -1,10 +1,12 @@
 import { Box, Button, Container, Grid, Paper, Stack, TextField } from '@mui/material'
+import { registerUserDb, useAppDispatch } from '@/redux'
 
 import { User } from '@/models'
-import { useAppDispatch } from '@/redux'
 import { useForm } from '@/hooks'
+import { useNavigate } from 'react-router-dom'
 
 const RegisterPage = () => {
+  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const { formInputState, handleInputChange } = useForm<User>({
     lastName: '',
@@ -17,16 +19,18 @@ const RegisterPage = () => {
     phone: 0,
   })
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onHandleRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(formInputState)
+    dispatch(registerUserDb(formInputState))
+    
+    navigate('/')
   }
   return (
     <Container maxWidth='xl' sx={{ padding: 7 }}>
       <Grid container direction='column' alignItems='center' justifyContent='center' sx={{ minHeight: '100vh' }}>
         <Grid item>
           <Paper elevation={5} sx={{ padding: '1.2rem', width: '40rem' }}>
-            <Box component='form' onSubmit={handleSubmit}>
+            <Box component='form' onSubmit={onHandleRegister}>
               <Stack spacing={3}>
                 <TextField
                   name='firstName'
@@ -62,7 +66,7 @@ const RegisterPage = () => {
                   fullWidth
                   required
                 />
-                <TextField name='avatar' label='' type='file' onChange={handleInputChange} fullWidth required />
+                <TextField name='avatar' label='Avatar' type='text' onChange={handleInputChange} fullWidth required />
                 <TextField
                   name='password'
                   label='Contraseña'
@@ -76,6 +80,9 @@ const RegisterPage = () => {
                 </Button>
                 <Button type='reset' variant='outlined' fullWidth>
                   Borrar
+                </Button>
+                <Button type='button' variant='outlined' onClick={() => navigate('/')} fullWidth>
+                  Volver
                 </Button>
               </Stack>
             </Box>

@@ -25,8 +25,6 @@ const registerStrategy = new LocalStrategy(
       if (existingEmail) {
         return done(null, false)
       }
-      // ! El avatar se modificó para poder pasar los tests de prueba
-      // const avatar = `http://localhost:${PORT}/${req.file.filename}`
       const user = new User({
         firstName,
         lastName,
