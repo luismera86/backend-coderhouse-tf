@@ -2,6 +2,7 @@ import { Router } from 'express'
 import cartRouter from './cartRouter.js'
 import loginRouter from './loginRouter.js'
 import productsRouter from './productsRouter.js'
+import purchaseOrder from './purchaseOrderRouter.js'
 import registerRouter from './registerRouter.js'
 import usersRouter from './usersRoutes.js'
 
@@ -11,5 +12,6 @@ routes.use('/register', registerRouter)
 routes.use('/login', loginRouter)
 routes.use('/products', productsRouter)
 routes.use('/cart', cartRouter)
+routes.use('/purchase', purchaseOrder)
 
 export default routes
