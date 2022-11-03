@@ -1,10 +1,12 @@
 import { failLoginRender, loginUser } from '../controllers/loginController.js'
 
 import { Router } from 'express'
-import passport from 'passport'
+
+// import passport from 'passport'
 
 const loginRouter = Router()
 loginRouter.get('/faillogin', failLoginRender)
-loginRouter.post('/', passport.authenticate('login', { failureRedirect: '/login/faillogin' }), loginUser)
+loginRouter.post('/', loginUser)
+// loginRouter.post('/', passport.authenticate('login', { failureRedirect: '/login/faillogin' }), loginUser)
 
 export default loginRouter

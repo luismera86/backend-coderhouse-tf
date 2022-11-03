@@ -60,3 +60,55 @@
 [2022-10-31T03:40:08.210Z] error: User validation failed: firstName: Path `firstName` is required.
 [2022-10-31T03:40:36.697Z] error: User validation failed: firstName: Path `firstName` is required.
 [2022-10-31T03:41:49.326Z] error: User validation failed: email: Por favor ingrese un email válido
+[2022-11-01T20:05:31.647Z] error: error Cast to ObjectId failed for value "{ id: '635f44be1330b65b13f1769c' }" (type Object) at path "_id" for model "User"
+[2022-11-01T20:05:47.231Z] error: error Cast to ObjectId failed for value "{
+  id: '635f44be1330b65b13f1769c',
+  update: {
+    firstName: 'Luis44',
+    lastName: 'Mera',
+    email: 'luhdddde@luhtttt',
+    phone: 23432,
+    age: 33,
+    address: 'dsfsd',
+    avatar: 'avatar',
+    password: '1',
+    role: 'user'
+  }
+}" (type Object) at path "_id" for model "User"
+[2022-11-01T20:07:02.947Z] error: error update is not defined
+[2022-11-01T20:08:38.899Z] error: error Cannot destructure property 'firstName' of 'update' as it is undefined.
+[2022-11-01T20:08:57.862Z] error: error Cannot destructure property 'firstName' of 'update' as it is undefined.
+[2022-11-01T20:09:39.062Z] error: error Cannot destructure property 'firstName' of 'update' as it is undefined.
+[2022-11-01T20:11:33.665Z] error: error Cannot destructure property 'firstName' of 'update' as it is undefined.
+[2022-11-01T20:12:00.470Z] error: error Cast to ObjectId failed for value "{ id: '635f44be1330b65b13f1769c', update: undefined }" (type Object) at path "_id" for model "User"
+[2022-11-01T20:13:19.791Z] error: error update is not defined
+[2022-11-03T00:19:34.684Z] error: No se pudo generar el token
+[2022-11-03T00:26:53.273Z] error: error Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle
+[2022-11-03T00:27:26.832Z] error: error Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle
+[2022-11-03T00:28:18.716Z] error: error Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle
+[2022-11-03T00:28:49.446Z] error: error Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle
+[2022-11-03T00:29:17.904Z] error: error Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle
+[2022-11-03T00:35:32.324Z] error: User validation failed: email: Por favor ingrese un email válido
+[2022-11-03T00:36:40.435Z] error: document must have an _id before saving
+[2022-11-03T00:36:48.775Z] error: document must have an _id before saving
+[2022-11-03T00:37:05.622Z] error: document must have an _id before saving

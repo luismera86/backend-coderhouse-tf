@@ -8,7 +8,11 @@ const cartSchema = new Schema({
   products: {
     type: Array,
     required: true,
-  }
+  },
+  total: {
+    type: Number,
+    required: true,
+  },
 })
 
 const Cart = model('Cart', cartSchema)
