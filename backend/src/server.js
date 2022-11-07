@@ -1,5 +1,6 @@
 import './middlewares/passport.js'
 
+import { Server as IOServer } from 'socket.io'
 import config from './config/config.js'
 import connectDB from './config/mongoDb.js'
 import cors from 'cors'
@@ -24,6 +25,11 @@ app.get('/', (req, res) => {
 })
 app.use('/', routes)
 
-app.listen(PORT, () => {
+const serverExpress = app.listen(PORT, () => {
   logger.info(`Server on port ${PORT}`)
+})
+const io = new IOServer(serverExpress)
+
+io.on('connection', socket => {
+  console.log(`New user connection ${socket.id}`)
 })
