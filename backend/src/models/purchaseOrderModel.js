@@ -1,5 +1,3 @@
-// Todo: Aqui creamos el modelo de orden de compra que se va a registrar en la base de datos que tenga el id del usuario, email del usuario, productos con sus cantidades y su subtotales, total a pagar.
-
 import { Schema, model } from 'mongoose'
 
 const orderSchema = new Schema({
@@ -10,6 +8,20 @@ const orderSchema = new Schema({
   mail: {
     type: String,
     required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: String,
+    required: true,
+  },
+  state: {
+    type: String,
+    required: true,
+    enum: ['generated', 'cancelled'],
+    default: 'generated',
   },
   cart: {
     type: Array,

@@ -6,7 +6,7 @@ import logger from '../utils/logger.js'
 
 export const userRegister = async (req = request, res = response) => {
   try {
-    const { firstName, lastName, email, phone, address, avatar, password, role, age } = req.body
+    const { firstName, lastName, email, phone, address, avatar, password, password2, role, age } = req.body
     console.log(req.body.user)
 
     const user = new User({ firstName, lastName, email, phone, address, avatar, password, role, age })
@@ -14,6 +14,10 @@ export const userRegister = async (req = request, res = response) => {
     if (checkMail) {
       return res.status(400).json({ msg: 'El correo ya se encuentra registrado' })
     }
+    if (password !== password2) {
+      return res.status(401).json({ msg: 'Los password no coinciden' })
+    }
+
     user.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10), null)
     await user.save()
     res.status(200).json({ message: 'Usuario registrado con éxito' })

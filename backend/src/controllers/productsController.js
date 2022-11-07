@@ -20,13 +20,28 @@ export const getProductById = async (req = request, res = response) => {
   try {
     const { id } = req.params
     const isMongoId = isValidObjectId(id)
-    console.log(isMongoId)
     if (!isMongoId) {
       return res.status(400).json({ msg: 'No es un id válido' })
     }
     const product = await Product.findOne({ _id: id })
 
     res.status(200).json({ product })
+  } catch (error) {
+    logger.info('error', error)
+    res.status(404).json({ message: error.message })
+  }
+}
+
+export const getProductCategory = async (req = request, res = response) => {
+  try {
+    const { category } = req.params
+
+    const products = await Product.find({ category })
+
+    if (!products) {
+      return res.status(400).json({ msg: 'No existe la categoría' })
+    }
+    res.status(200).json({ products })
   } catch (error) {
     logger.info('error', error)
     res.status(404).json({ message: error.message })

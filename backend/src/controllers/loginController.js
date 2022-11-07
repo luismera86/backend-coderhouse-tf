@@ -30,23 +30,9 @@ export const loginUser = async (req = request, res = response) => {
 
     const token = await generateJwt(user.id)
 
-    res.json({
-      user,
-      token,
-    })
+    res.json({ user, token }).redirect('/products')
   } catch (error) {
     logger.error(error)
     res.status(500).json({ message: 'Error getting users' })
   }
 }
-
-// export const loginUser = async (req = request, res = response) => {
-//   try {
-//     const user = await User.findOne({ email: req.body.username })
-//     req.session.user = user
-//     res.status(200).json({ login: true, user })
-//   } catch (error) {
-//     logger.error(error)
-//     res.status(500).json({ message: 'Error getting users' })
-//   }
-// }

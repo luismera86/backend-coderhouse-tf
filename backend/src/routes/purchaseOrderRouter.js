@@ -1,7 +1,9 @@
 import { Router } from 'express'
+import { getOrderById, getOrderByUserID, saveOrder } from '../controllers/purchaseOrderController'
 
 const purchaseOrder = Router()
 
-// Todo: Poner los métodos de post para guardar las ordenes, put para modificar la orden de compra y get para ver todas las ordenes de compras por usuario y get para ver una orden de compra en particular.
-
+purchaseOrder.get('/:id', getOrderById)
+purchaseOrder.get('/', getOrderByUserID)
+purchaseOrder.post('/', saveOrder)
 export default purchaseOrder
