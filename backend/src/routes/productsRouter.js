@@ -16,7 +16,7 @@ const productsRouter = Router()
 
 productsRouter.get('/', getProducts)
 productsRouter.get('/:id', getProductById)
-productsRouter.get('/:category', getProductCategory)
+productsRouter.get('/category/:category', getProductCategory)
 productsRouter.post('/', validateJwt, isAdminRole, createProduct)
 productsRouter.put('/:id', validateJwt, isAdminRole, updateProduct)
 productsRouter.put('/:id_product', updateProductQuantity)

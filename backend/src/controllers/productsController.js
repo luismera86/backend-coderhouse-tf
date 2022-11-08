@@ -38,7 +38,7 @@ export const getProductCategory = async (req = request, res = response) => {
 
     const products = await Product.find({ category })
 
-    if (!products) {
+    if (products.length === 0) {
       return res.status(400).json({ msg: 'No existe la categoría' })
     }
     res.status(200).json({ products })

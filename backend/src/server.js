@@ -1,5 +1,4 @@
-import './middlewares/passport.js'
-
+import ChatManager from './services/chatManager.js'
 import { Server as IOServer } from 'socket.io'
 import config from './config/config.js'
 import connectDB from './config/mongoDb.js'
@@ -29,7 +28,17 @@ const serverExpress = app.listen(PORT, () => {
   logger.info(`Server on port ${PORT}`)
 })
 const io = new IOServer(serverExpress)
+const chatManager = new ChatManager()
+io.on('connection', async socket => {
+  console.log(`Se conecto un usuario ${socket.id}`)
+  const messages = await chatManager.getAllMessages()
 
-io.on('connection', socket => {
-  console.log(`New user connection ${socket.id}`)
+  io.emit('server:message', messages)
+
+  socket.on('client:message', async messageInfo => {
+    const { email, message } = messageInfo
+    await chatManager.newMessages(email, message)
+    const messages = await chatManager.getAllMessages()
+    io.emit('server:message', messages)
+  })
 })
