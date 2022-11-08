@@ -4,6 +4,7 @@ import config from './config/config.js'
 import connectDB from './config/mongoDb.js'
 import cors from 'cors'
 import express from 'express'
+import hbs from 'hbs'
 import logger from './utils/logger.js'
 import routes from './routes/index.js'
 
@@ -23,6 +24,14 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 app.use('/', routes)
+app.set('view engine', 'hbs')
+hbs.registerPartials('views/partials')
+app.get('/', (req, res) => {
+  res.render('home')
+})
+app.get('/config', (req, res) => {
+  res.render('config')
+})
 
 const serverExpress = app.listen(PORT, () => {
   logger.info(`Server on port ${PORT}`)
@@ -41,4 +50,8 @@ io.on('connection', async socket => {
     const messages = await chatManager.getAllMessages()
     io.emit('server:message', messages)
   })
+})
+
+app.get('*', (req, res) => {
+  res.render('error404')
 })

@@ -1,11 +1,11 @@
 import { Schema, model } from 'mongoose'
 
 const orderSchema = new Schema({
-  user_id: {
+  id_user: {
     type: Number,
     required: true,
   },
-  mail: {
+  email: {
     type: String,
     required: true,
   },
@@ -23,7 +23,7 @@ const orderSchema = new Schema({
     enum: ['generated', 'cancelled'],
     default: 'generated',
   },
-  cart: {
+  products: {
     type: Array,
     required: true,
   },

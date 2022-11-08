@@ -3,11 +3,16 @@
 import { request, response } from 'express'
 
 import User from '../models/userModel.js'
+import { isValidObjectId } from 'mongoose'
 import logger from '../utils/logger.js'
 
 export const getUser = async (req = request, res = response) => {
   try {
     const { id } = req.params
+    const isMongoId = isValidObjectId(id)
+    if (!isMongoId) {
+      return res.status(400).json({ msg: 'No es un id válido' })
+    }
     const user = await User.findOne({ _id: id })
     res.status(200).json({ user })
   } catch (error) {
