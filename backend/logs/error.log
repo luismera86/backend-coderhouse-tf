@@ -112,3 +112,14 @@
 [2022-11-03T00:36:40.435Z] error: document must have an _id before saving
 [2022-11-03T00:36:48.775Z] error: document must have an _id before saving
 [2022-11-03T00:37:05.622Z] error: document must have an _id before saving
+[2022-11-09T03:57:56.466Z] error: User validation failed: password2: Path `password2` is required.
+[2022-11-09T03:58:40.306Z] error: User validation failed: password2: Path `password2` is required.
+[2022-11-09T03:59:04.114Z] error: User validation failed: password2: Path `password2` is required.
+[2022-11-09T03:59:55.964Z] error: User validation failed: password2: Path `password2` is required.
+[2022-11-09T04:00:09.762Z] error: User validation failed: password2: Path `password2` is required.
+[2022-11-09T04:00:23.143Z] error: User validation failed: password2: Path `password2` is required.
+[2022-11-09T04:00:25.017Z] error: User validation failed: password2: Path `password2` is required.
+[2022-11-09T04:01:37.725Z] error: User validation failed: password2: Path `password2` is required.
+[2022-11-09T04:05:58.477Z] error: The from address does not match a verified Sender Identity. Mail cannot be sent until this error is resolved. Visit https://sendgrid.com/docs/for-developers/sending-email/sender-identity/ to see the Sender Identity requirements
+[2022-11-09T04:08:14.443Z] error: The from address does not match a verified Sender Identity. Mail cannot be sent until this error is resolved. Visit https://sendgrid.com/docs/for-developers/sending-email/sender-identity/ to see the Sender Identity requirements
+[2022-11-09T04:10:48.536Z] error: The from address does not match a verified Sender Identity. Mail cannot be sent until this error is resolved. Visit https://sendgrid.com/docs/for-developers/sending-email/sender-identity/ to see the Sender Identity requirements

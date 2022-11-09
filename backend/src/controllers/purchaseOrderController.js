@@ -3,11 +3,16 @@
 import { request, response } from 'express'
 
 import Order from '../models/purchaseOrderModel.js'
+import { isValidObjectId } from 'mongoose'
 import logger from '../utils/logger.js'
 
 export const saveOrder = async (req = request, res = response) => {
   try {
     const { user_id, mail, cart } = req.body
+    const isMongoId = isValidObjectId(user_id)
+    if (!isMongoId) {
+      return res.status(400).json({ msg: 'No es un id válido' })
+    }
     const order = new Order({ user_id, mail, cart })
     await order.save()
     res.status(200).json({ order })
@@ -20,10 +25,11 @@ export const saveOrder = async (req = request, res = response) => {
 export const getOrderById = async (res = request, req = request) => {
   try {
     const { id } = req.params
-    const order = await Order.findById({ _id: id })
-    if (!order) {
-      return res.status(401).json({ msg: 'No se encuentra la orden solicitada' })
+    const isMongoId = isValidObjectId(id)
+    if (!isMongoId) {
+      return res.status(400).json({ msg: 'No es un id válido' })
     }
+    const order = await Order.findById({ _id: id })
 
     res.status(200).json({ order })
   } catch (error) {
@@ -35,10 +41,11 @@ export const getOrderById = async (res = request, req = request) => {
 export const getOrderByUserID = async (res = request, req = request) => {
   try {
     const { id } = req.body
-    const order = await Order.find({ user_id: id })
-    if (!order) {
-      return res.status(401).json({ msg: 'No se encuentra la orden solicitada' })
+    const isMongoId = isValidObjectId(id)
+    if (!isMongoId) {
+      return res.status(400).json({ msg: 'No es un id válido' })
     }
+    const order = await Order.find({ user_id: id })
 
     res.status(200).json({ order })
   } catch (error) {

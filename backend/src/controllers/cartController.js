@@ -6,8 +6,21 @@ import Cart from '../models/cartModel.js'
 import Order from '../models/purchaseOrderModel.js'
 import Product from '../models/productsModel.js'
 import User from '../models/userModel.js'
+import config from '../config/config.js'
+import { createTransport } from 'nodemailer'
 import { isValidObjectId } from 'mongoose'
 import logger from '../utils/logger.js'
+
+const { MAIL, MAIL_PASSWORD } = config
+
+const transporter = createTransport({
+  host: 'smtp.ethereal.email',
+  port: 587,
+  auth: {
+    user: MAIL,
+    pass: MAIL_PASSWORD,
+  },
+})
 
 export const createCart = async (req = request, res = response) => {
   try {
@@ -48,6 +61,10 @@ export const addProductToCart = async (req = request, res = response) => {
     const { id_product, id_user, quantity } = req.body
     const item = await Product.findById(id_product)
     const cart = await Cart.findOne({ id_user })
+    const isMongoId = isValidObjectId(id_user)
+    if (!isMongoId) {
+      return res.status(400).json({ msg: 'No es un id válido' })
+    }
     const checkProductCart = cart.products.find(product => product.id_product === id_product)
     const indexProductCart = cart.products.findIndex(product => product.id_product === id_product)
     const product = {
@@ -77,6 +94,10 @@ export const addProductToCart = async (req = request, res = response) => {
 export const deleteProductFromCart = async (req = request, res = response) => {
   try {
     const { id_product, id_user } = req.body
+    const isMongoId = isValidObjectId(id_user)
+    if (!isMongoId) {
+      return res.status(400).json({ msg: 'No es un id válido' })
+    }
     await Cart.updateOne({ id_user }, { $pull: { products: { id_product } } })
     const cart = await Cart.findOne({ id_user })
     const initialValue = 0
@@ -93,7 +114,10 @@ export const deleteProductFromCart = async (req = request, res = response) => {
 export const purchaseCart = async (req = request, res = response) => {
   try {
     const { id } = req.params
-    console.log(id)
+    const isMongoId = isValidObjectId(id)
+    if (!isMongoId) {
+      return res.status(400).json({ msg: 'No es un id válido' })
+    }
     const cart = await Cart.findOne({ id_user: id })
     const user = await User.findOne({ _id: id })
     if (!cart) {
@@ -104,9 +128,14 @@ export const purchaseCart = async (req = request, res = response) => {
     }
     const { address, email } = user
     const { products, id_user, total } = cart
-    console.log(total)
     const order = new Order({ id_user, email, address, date: new Date(), products, total })
     await order.save()
+    await transporter.sendMail({
+      to: user.email,
+      from: 'info@tiendatuya.com',
+      subject: 'Nueva orden de compra',
+      html: `Se genero una orden de pedido con el id ${order._id} del usuario con el id ${id_user}`
+    })
     res.status(200).json({ order })
   } catch (error) {
     logger.info('error', error)
