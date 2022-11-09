@@ -4,7 +4,7 @@ import { Router } from 'express'
 
 const cartRouter = Router()
 
-cartRouter.get('/', getCart)
+cartRouter.get('/:id', getCart)
 cartRouter.post('/', addProductToCart)
 cartRouter.post('/:id', createCart)
 cartRouter.post('/purchase/:id', purchaseCart)

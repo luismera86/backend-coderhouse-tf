@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose'
 
 const orderSchema = new Schema({
   id_user: {
-    type: Number,
+    type: String,
     required: true,
   },
   email: {
@@ -27,6 +27,10 @@ const orderSchema = new Schema({
     type: Array,
     required: true,
   },
+  total: {
+    type: Number,
+    required: true
+  }
 })
 
 const Order = model('Order', orderSchema)

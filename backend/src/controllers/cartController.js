@@ -34,7 +34,7 @@ export const createCart = async (req = request, res = response) => {
 
 export const getCart = async (req = request, res = response) => {
   try {
-    const { id } = req.body
+    const { id } = req.params
     const cart = await Cart.findOne({ id_user: id })
     res.status(200).json({ cart })
   } catch (error) {
@@ -47,15 +47,22 @@ export const addProductToCart = async (req = request, res = response) => {
   try {
     const { id_product, id_user, quantity } = req.body
     const item = await Product.findById(id_product)
-
+    const cart = await Cart.findOne({ id_user })
+    const checkProductCart = cart.products.find(product => product.id_product === id_product)
+    const indexProductCart = cart.products.findIndex(product => product.id_product === id_product)
     const product = {
       id_product,
       name: item.name,
       quantity,
       subTotal: item.price * quantity,
     }
-    await Cart.updateOne({ id_user }, { $push: { products: product } })
-    const cart = await Cart.findOne({ id_user })
+    if (checkProductCart) {
+      cart.products[indexProductCart].quantity = cart.products[indexProductCart].quantity + product.quantity
+      cart.products[indexProductCart].subTotal = cart.products[indexProductCart].quantity * item.price
+      await Cart.updateOne({ id_user }, { $set: { products: cart.products } })
+    } else {
+      await Cart.updateOne({ id_user }, { $push: { products: product } })
+    }
     const initialValue = 0
     const total = await cart.products.reduce((acc, item) => acc + item.subTotal, initialValue)
     await Cart.updateOne({ id_user }, { $set: { total } })
@@ -69,28 +76,24 @@ export const addProductToCart = async (req = request, res = response) => {
 
 export const deleteProductFromCart = async (req = request, res = response) => {
   try {
-    // Todo: seguir los pasos del addProductToCart para el proceso de eliminación de producto y calcula de total
     const { id_product, id_user } = req.body
+    await Cart.updateOne({ id_user }, { $pull: { products: { id_product } } })
     const cart = await Cart.findOne({ id_user })
-    await cart.updateOne({ $set: { total: 0 } })
-    await cart.updateOne({ $pull: { products: { id_product } } })
-    // const cartUpdate = await Cart.findOne({ id_user })
-    // const initialValue = 0
-    // const total = cart.products.reduce((acc, item) => acc + item.subTotal, initialValue)
-    // await cartUpdate.updateOne({ total })
-
-    res.status(200).json({ cart })
+    const initialValue = 0
+    const total = cart.products.reduce((acc, item) => acc + item.subTotal, initialValue)
+    await Cart.updateOne({ id_user }, { $set: { total } })
+    const newCart = await Cart.findOne({ id_user })
+    res.status(200).json({ newCart })
   } catch (error) {
     logger.info('error', error)
     res.status(404).json({ message: error.message })
   }
 }
 
-// Todo agregar un controller para verificar si el producto ya está en el carrito y solamente aumentar la cantidad que se selecciono y no sume productos repetidos, tmb verificar que la cantidad no pueda ser menor a 1
-
 export const purchaseCart = async (req = request, res = response) => {
   try {
     const { id } = req.params
+    console.log(id)
     const cart = await Cart.findOne({ id_user: id })
     const user = await User.findOne({ _id: id })
     if (!cart) {
@@ -100,9 +103,11 @@ export const purchaseCart = async (req = request, res = response) => {
       return res.status(401).json({ msg: 'No existe un usuario con ese id' })
     }
     const { address, email } = user
-    const { products, id_user } = cart
-    const order = new Order({ id_user, email, address, date: new Date(), products })
+    const { products, id_user, total } = cart
+    console.log(total)
+    const order = new Order({ id_user, email, address, date: new Date(), products, total })
     await order.save()
+    res.status(200).json({ order })
   } catch (error) {
     logger.info('error', error)
     res.status(500).json({ msg: error })
