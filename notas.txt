@@ -1,9 +1,0 @@
-- No pide front, salvo erro para que mande el 404, hacer un middleware que cuando tiene un error mande siempre al 404, sino en el catch para que mande a la página del 404 
-
-- La session se la configura con cookies
-- con tema de chat hacer una ruta /chat como para probarlo como lo vimos en clase
-- Hacer un archivo txt con un env sample para poner las variables de entorno para que pruebe el profe 
-- Hacer una pagina que renderize algunas variables del .env, como el puerto, la url de la bd 
-- Envío de mail de notificaciones con nodemailer que lleguen las ordenes de compra 
-- Nota: se puede usar express-validator 
-- 
