@@ -6,7 +6,6 @@ import logger from '../utils/logger.js'
 export const getMessagesUser = async (req = request, res = response) => {
   try {
     const { email } = req.params
-    console.log(email)
     const userMessages = await Message.find({ email })
     if (userMessages.length === 0) {
       return res.status(401).json({ msg: 'No hay ningún mensaje de este usuario' })

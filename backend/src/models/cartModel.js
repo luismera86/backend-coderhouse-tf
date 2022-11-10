@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
 
 const cartSchema = new Schema({
-  id_user: {
+  idUser: {
     type: String,
     required: true,
   },

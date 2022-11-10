@@ -5,15 +5,6 @@ import bcrypt from 'bcrypt'
 import { generateJwt } from '../utils/jwt.js'
 import logger from '../utils/logger.js'
 
-export const failLoginRender = (req = request, res = response) => {
-  try {
-    res.sendStatus(401).json({ login: false })
-  } catch (error) {
-    logger.error(error)
-    res.status(500).json({ message: 'Error getting users' })
-  }
-}
-
 export const loginUser = async (req = request, res = response) => {
   try {
     const { email, password } = req.body

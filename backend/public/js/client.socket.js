@@ -26,9 +26,9 @@ function renderMessages(messagesArray) {
     }
     const html = messagesArray
       .map(messageInfo => {
-        return `<div>
+        return `<div class='mt-2'>
                 <strong>${messageInfo.email}</strong>:
-                <em>${messageInfo.message}</em> </div>`
+                <em class='bg-success bg-opacity-25 ps-3 pe-3 rounded-3'>${messageInfo.message}</em> </div>`
       })
       .join(' ')
 

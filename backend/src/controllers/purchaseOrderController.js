@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 import { request, response } from 'express'
 
 import Order from '../models/purchaseOrderModel.js'
@@ -8,12 +6,12 @@ import logger from '../utils/logger.js'
 
 export const saveOrder = async (req = request, res = response) => {
   try {
-    const { user_id, mail, cart } = req.body
-    const isMongoId = isValidObjectId(user_id)
+    const { idUser, mail, cart } = req.body
+    const isMongoId = isValidObjectId(idUser)
     if (!isMongoId) {
       return res.status(400).json({ msg: 'No es un id válido' })
     }
-    const order = new Order({ user_id, mail, cart })
+    const order = new Order({ idUser, mail, cart })
     await order.save()
     res.status(200).json({ order })
   } catch (error) {
@@ -45,7 +43,7 @@ export const getOrderByUserID = async (res = request, req = request) => {
     if (!isMongoId) {
       return res.status(400).json({ msg: 'No es un id válido' })
     }
-    const order = await Order.find({ user_id: id })
+    const order = await Order.find({ idUser: id })
 
     res.status(200).json({ order })
   } catch (error) {

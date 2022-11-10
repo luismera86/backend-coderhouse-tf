@@ -3,10 +3,6 @@ import { userRegister } from '../controllers/registerController.js'
 
 const registerRouter = Router()
 
-registerRouter.post(
-  '/',
-
-  userRegister
-)
+registerRouter.post('/', userRegister)
 
 export default registerRouter

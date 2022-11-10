@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
 
 const orderSchema = new Schema({
-  id_user: {
+  idUser: {
     type: String,
     required: true,
   },
