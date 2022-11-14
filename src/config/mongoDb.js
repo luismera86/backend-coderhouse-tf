@@ -1,5 +1,5 @@
 import config from './config.js'
-import logger from '../utils/logger.js'
+import logger from '../services/logger.js'
 import mongoose from 'mongoose'
 
 const { MONGODB_URL } = config

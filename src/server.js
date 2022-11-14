@@ -5,7 +5,7 @@ import connectDB from './config/mongoDb.js'
 import cors from 'cors'
 import express from 'express'
 import hbs from 'hbs'
-import logger from './utils/logger.js'
+import logger from './services/logger.js'
 import routes from './routes/index.js'
 
 const { PORT } = config

@@ -2,7 +2,7 @@ import { request, response } from 'express'
 
 import Product from '../models/productsModel.js'
 import { isValidObjectId } from 'mongoose'
-import logger from '../utils/logger.js'
+import logger from '../services/logger.js'
 
 export const getProducts = async (req = request, res = response) => {
   try {
@@ -20,10 +20,6 @@ export const getProducts = async (req = request, res = response) => {
 export const getProductById = async (req = request, res = response) => {
   try {
     const { id } = req.params
-    const isMongoId = isValidObjectId(id)
-    if (!isMongoId) {
-      return res.status(400).json({ msg: 'No es un id válido' })
-    }
     const product = await Product.findOne({ _id: id })
 
     res.status(200).json({ product })
@@ -71,10 +67,6 @@ export const createProduct = async (req = request, res = response) => {
 export const updateProduct = async (req = request, res = response) => {
   try {
     const { id } = req.params
-    const isMongoId = isValidObjectId(id)
-    if (!isMongoId) {
-      return res.status(400).json({ msg: 'No es un id válido' })
-    }
     const { name, price, description, thumbnail, category, quantity } = req.body
     const product = await Product.findById({ _id: id })
     await product.update({ name, price, description, thumbnail, category, quantity })
@@ -105,11 +97,6 @@ export const updateProductQuantity = async (req = request, res = response) => {
 export const deleteProduct = async (req = request, res = response) => {
   try {
     const { id } = req.params
-    const isMongoId = isValidObjectId(id)
-    console.log(isMongoId)
-    if (!isMongoId) {
-      return res.status(400).json({ msg: 'No es un id válido' })
-    }
     const product = await Product.findOne({ _id: id })
     await product.remove()
     res.status(200).json({ msg: 'Producto eliminado con éxito' })

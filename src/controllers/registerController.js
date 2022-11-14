@@ -4,7 +4,7 @@ import { request, response } from 'express'
 
 import User from '../models/userModel.js'
 import bcrypt from 'bcrypt'
-import logger from '../utils/logger.js'
+import logger from '../services/logger.js'
 import { sendEmailNewUser } from '../services/nodeMailer.js'
 
 export const userRegister = async (req = request, res = response) => {

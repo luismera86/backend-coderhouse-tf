@@ -1,7 +1,7 @@
 import { request, response } from 'express'
 
 import Message from '../models/messagesModel.js'
-import logger from '../utils/logger.js'
+import logger from '../services/logger.js'
 
 export const getMessagesUser = async (req = request, res = response) => {
   try {

@@ -1,6 +1,6 @@
 import { request, response } from 'express'
 
-import logger from '../utils/logger.js'
+import logger from '../services/logger.js'
 
 export const isAdminRole = (req = request, res = response, next) => {
   try {

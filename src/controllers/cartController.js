@@ -4,22 +4,17 @@ import Cart from '../models/cartModel.js'
 import Order from '../models/purchaseOrderModel.js'
 import Product from '../models/productsModel.js'
 import User from '../models/userModel.js'
-import { isValidObjectId } from 'mongoose'
-import logger from '../utils/logger.js'
+import { clearCart } from '../services/clearnCart.js'
+import logger from '../services/logger.js'
 import { sendMailNewOrder } from '../services/nodeMailer.js'
 
 export const createCart = async (req = request, res = response) => {
   try {
     const { id } = req.params
-    const isMongoId = isValidObjectId(id)
-    if (!isMongoId) {
-      return res.status(400).json({ msg: 'No es un id válido' })
-    }
     const userCart = await Cart.findOne({ idUser: id })
     if (!userCart) {
       const newCart = new Cart({ idUser: id })
       await newCart.save()
-      console.log(newCart)
 
       return res.status(201).json({ newCart })
     }
@@ -34,10 +29,6 @@ export const createCart = async (req = request, res = response) => {
 export const getCart = async (req = request, res = response) => {
   try {
     const { id } = req.params
-    const isMongoId = isValidObjectId(id)
-    if (!isMongoId) {
-      return res.status(400).json({ msg: 'No es un id válido' })
-    }
     const cart = await Cart.findOne({ idUser: id })
     res.status(200).json({ cart })
   } catch (error) {
@@ -49,10 +40,6 @@ export const getCart = async (req = request, res = response) => {
 export const addProductToCart = async (req = request, res = response) => {
   try {
     const { idProduct, idUser, quantity } = req.body
-    const isMongoId = isValidObjectId(idUser)
-    if (!isMongoId) {
-      return res.status(400).json({ msg: 'No es un id válido' })
-    }
     const item = await Product.findById(idProduct)
     const cart = await Cart.findOne({ idUser })
     const checkProductCart = cart.products.find(product => product.idProduct === idProduct)
@@ -84,10 +71,6 @@ export const addProductToCart = async (req = request, res = response) => {
 export const deleteProductFromCart = async (req = request, res = response) => {
   try {
     const { idProduct, idUser } = req.body
-    const isMongoId = isValidObjectId(idUser)
-    if (!isMongoId) {
-      return res.status(400).json({ msg: 'No es un id válido' })
-    }
     await Cart.updateOne({ idUser }, { $pull: { products: { idProduct } } })
     const cart = await Cart.findOne({ idUser })
     const initialValue = 0
@@ -104,10 +87,6 @@ export const deleteProductFromCart = async (req = request, res = response) => {
 export const purchaseCart = async (req = request, res = response) => {
   try {
     const { id } = req.params
-    const isMongoId = isValidObjectId(id)
-    if (!isMongoId) {
-      return res.status(400).json({ msg: 'No es un id válido' })
-    }
     const cart = await Cart.findOne({ idUser: id })
     const user = await User.findOne({ _id: id })
     if (!cart) {
@@ -121,6 +100,7 @@ export const purchaseCart = async (req = request, res = response) => {
     const order = new Order({ idUser, email, address, date: new Date(), products, total })
     await order.save()
     sendMailNewOrder(order, idUser)
+    clearCart(idUser)
     res.status(200).json({ order })
   } catch (error) {
     logger.info('error', error)

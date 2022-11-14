@@ -2,8 +2,8 @@ import { request, response } from 'express'
 
 import User from '../models/userModel.js'
 import bcrypt from 'bcrypt'
-import { generateJwt } from '../utils/jwt.js'
-import logger from '../utils/logger.js'
+import { generateJwt } from '../services/jwt.js'
+import logger from '../services/logger.js'
 
 export const loginUser = async (req = request, res = response) => {
   try {
@@ -21,7 +21,7 @@ export const loginUser = async (req = request, res = response) => {
 
     const token = await generateJwt(user.id)
 
-    res.json({ user, token }).redirect('/products')
+    res.json({ user, token })
   } catch (error) {
     logger.error(error)
     res.status(500).json({ message: 'Error getting users' })

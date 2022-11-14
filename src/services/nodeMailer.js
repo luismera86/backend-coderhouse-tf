@@ -2,7 +2,7 @@
 
 import config from '../config/config.js'
 import { createTransport } from 'nodemailer'
-import logger from '../utils/logger.js'
+import logger from './logger.js'
 
 const { MAIL, MAIL_PASSWORD } = config
 

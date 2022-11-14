@@ -3,7 +3,7 @@ import { request, response } from 'express'
 import User from '../models/userModel.js'
 import config from '../config/config.js'
 import jwt from 'jsonwebtoken'
-import logger from '../utils/logger.js'
+import logger from '../services/logger.js'
 
 const { SECRET_KEY } = config
 

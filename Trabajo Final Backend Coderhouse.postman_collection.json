@@ -1,0 +1,552 @@
+{
+	"info": {
+		"_postman_id": "1945b220-9b2e-42eb-b39d-0e103b105c67",
+		"name": "Trabajo Final Backend Coderhouse",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20178822"
+	},
+	"item": [
+		{
+			"name": "Carrito",
+			"item": [
+				{
+					"name": "Get Carrito",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear un carrito para el usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cart/635f3a297e33fc9813ea7c8d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cart",
+								"635f3a297e33fc9813ea7c8d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar producto al carrito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idProduct\": \"632b1ced86aa04371435523a\",\r\n    \"idUser\": \"635f3a297e33fc9813ea7c8d\",\r\n    \"quantity\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cart/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cart",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar producto del carrito",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idProduct\": \"63647f5022b2cd492ea9d61b\",\r\n    \"idUser\": \"635f3a297e33fc9813ea7c8d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cart/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cart",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Comprar productos generar orden de compra",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_product\": \"63647f5022b2cd492ea9d61b\",\r\n    \"id_user\": \"635f3a297e33fc9813ea7c8d\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cart/purcharse/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cart",
+								"purcharse",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Registrar Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Lucho\",\r\n    \"lastName\": \"Mera\",\r\n    \"email\": \"luismera86@gmail.com\",\r\n    \"phone\": 23432,\r\n    \"age\": 33,\r\n    \"address\": \"dsfsd\",\r\n    \"avatar\": \"avatar\",\r\n    \"password\": \"1\",\r\n    \"password2\": \"1\",\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actulizar Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Luis454\",\r\n    \"lastName\": \"Mera\",\r\n    \"email\": \"luhdddde@luhtttt\",\r\n    \"phone\": 23432,\r\n    \"age\": 35,\r\n    \"address\": \"dsfsd\",\r\n    \"avatar\": \"avatar\",\r\n    \"password\": \"1\",\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/635f44be1330b65b13f1769c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"635f44be1330b65b13f1769c"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "635f44be1330b65b13f1769c",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "set-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzJiYTEyMTZlZmMwYWFkYjNhOGI5NGIiLCJpYXQiOjE2Njc0NDE4MDYsImV4cCI6MTY2NzQ0OTAwNn0.APMMeGfkAncDLlZK_gwW_TagYgkeDlgq_EY2yWvo37Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Luis454\",\r\n    \"lastName\": \"Mera\",\r\n    \"email\": \"luhdddde@luhtttt\",\r\n    \"phone\": 23432,\r\n    \"age\": 35,\r\n    \"address\": \"dsfsd\",\r\n    \"avatar\": \"avatar\",\r\n    \"password\": \"1\",\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/63630d74fce07efeddf3b6ba",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"63630d74fce07efeddf3b6ba"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "635f44be1330b65b13f1769c",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"luismeradev@gmail.com\",\r\n    \"password\": \"a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get todos los Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Usuario por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/635f3a297e33fc9813ea7c8d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"635f3a297e33fc9813ea7c8d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Get Productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Productos por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/632b1ced86aa043714355237",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"632b1ced86aa043714355237"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Productos por Categoría",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/category/Calzados",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"category",
+								"Calzados"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear un Producto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pantalon\",\r\n    \"price\": 599,\r\n    \"description\": \"Pantalón talle M\",\r\n    \"thumbnail\": \"ur imagen\",\r\n    \"quiantity\": 20,\r\n    \"category\": \"pantalones\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar un Producto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "set-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzJiYTEyMTZlZmMwYWFkYjNhOGI5NGIiLCJpYXQiOjE2Njc1NzQ4MzksImV4cCI6MTY2NzU4MjAzOX0.v4Cuxi4e61jrl8DhQoke850Drvrw53qhpMoN9IR5luY",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Es un producto 4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/632b1ced86aa043714355237",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"632b1ced86aa043714355237"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar un Producto Cantidad",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "set-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzJiYTEyMTZlZmMwYWFkYjNhOGI5NGIiLCJpYXQiOjE2Njc1MzA1NjIsImV4cCI6MTY2NzUzNzc2Mn0.QTMdyuxm-LHV8aE4DW5xdJWHyGI7s8Dg8E6X61cGRUA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/63647f5022b2cd492ea9d61b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"63647f5022b2cd492ea9d61b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar un Producto",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "set-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzJiYTEyMTZlZmMwYWFkYjNhOGI5NGIiLCJpYXQiOjE2Njc1MzA1NjIsImV4cCI6MTY2NzUzNzc2Mn0.QTMdyuxm-LHV8aE4DW5xdJWHyGI7s8Dg8E6X61cGRUA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \r\n    \"description\": \"Es un producto 7\"\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/632b1ced86aa043714355234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"632b1ced86aa043714355234"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chat",
+			"item": [
+				{
+					"name": "Get Messages de chat por email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/chat/luismera86@outlook.es",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"chat",
+								"luismera86@outlook.es"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
