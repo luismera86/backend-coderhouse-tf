@@ -36,5 +36,7 @@ donde se encuentra los datos para configurar el servidor y otra en el que tiene 
 ## Herramientas utilizadas
 
 - JavaScript.
+- Node Js.
+- Express.
 - MongoDB.
 - Postman.
